@@ -32,7 +32,6 @@ pipeline{
 		withCredentials([string(credentialsId: 'nityapass3', variable: 'nityapass3')]) { 
     // some block
 			 sh 'docker login -u nityarinky100 -p ${nityapass3}'
-			 sh 'docker image push $JOB_NAME.v1.$BUILD_ID'
 			 sh 'docker image push nityarinky100/$JOB_NAME.v1.$BUILD_ID'
 			 sh 'docker image push nityarinky100/$JOB_NAME:latest'
 			 sh 'docker image rmi $JOB_NAME.v1.$BUILD_ID nityarinky100/$JOB_NAME.v1.$BUILD_ID nityarinky100/$JOB_NAME:latest'
