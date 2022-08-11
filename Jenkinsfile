@@ -29,7 +29,7 @@ pipeline{
          
          steps{
 		 
-		 withCredentials([string(credentialsId: '', variable: 'dockerhubpassword')]) {
+		 withCredentials([string(credentialsId: 'nityapassword', variable: 'nitya100')])  {
     // some block
 			 sh 'docker login -u nityarinky100 -p ${dockerhubpassword}'
 			 sh 'docker image push $JOB_NAME.v1.$BUILD_ID'
