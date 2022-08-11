@@ -12,5 +12,17 @@ pipeline{
            echo 'Code is pulled'
          }
 	}
+		
+		stage("Build Docker image"){
+         
+         steps{
+
+		 sh 'docker image build -t $JOB_NAME.v1.$BUILD_ID .'
+		 sh 'docker image tag $JOB_NAME.v1.$BUILD_ID nityarinky100/$JOB_NAME.v1.$BUILD_ID'
+		 sh 'docker image tag $JOB_NAME.v1.$BUILD_ID nityarinky100/$JOB_NAME:latest'
+		 echo 'Docker image build is successful'
+		 
+         }
+	}
 	}
 }
