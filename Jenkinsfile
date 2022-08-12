@@ -49,7 +49,9 @@ pipeline{
 		 
 		
 		sshagent(['nityadockerhubpass']) {
-    // some block
+    // some block       
+			sh "ssh -o StrictHostKeyChecking=no  ec2-user@172.31.95.120 'docker container rm -f cloudcontainer'"
+			sh "ssh -o StrictHostKeyChecking=no  ec2-user@172.31.95.120 'docker image rmi nityarinky100/declarative-pipeline:latest'"
 			sh "ssh -o StrictHostKeyChecking=no  ec2-user@172.31.95.120 'docker container run -p 9090:80 -d --name cloudcontainer nityarinky100/declarative-pipeline:latest'"
 			 
 }
