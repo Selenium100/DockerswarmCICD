@@ -48,11 +48,11 @@ pipeline{
          
          steps{
 		 
-		 def dockerrun = 'docker container run -p 9090:80 -d --name cloudcontainer nityarinky100/declarative-pipeline:latest'
+		
 		sshagent(['dockerhubpass2']) {
     // some block
 			
-			sh "${dockerrun}"
+			sh 'docker container run -p 9090:80 -d --name cloudcontainer nityarinky100/declarative-pipeline:latest'
 }
 
 		 
