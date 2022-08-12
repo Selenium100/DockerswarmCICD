@@ -12,21 +12,15 @@ pipeline{
                     properties([
                         parameters([
                             choice(
-                                choices: ['ONE', 'TWO'], 
-                                name: 'PARAMETER_01'
+                                choices: ['master', 'testing'], 
+                                name: 'Branch'
                             ),
                             booleanParam(
                                 defaultValue: true, 
                                 description: '', 
-                                name: 'BOOLEAN'
+                                name: 'CHECK_ON_SUCCESS'
                             ),
-                            text(
-                                defaultValue: '''
-                                this is a multi-line 
-                                string parameter example
-                                ''', 
-                                 name: 'MULTI-LINE-STRING'
-                            ),
+                            
                             string(
                                 defaultValue: 'scriptcrunch', 
                                 name: 'STRING-PARAMETER', 
