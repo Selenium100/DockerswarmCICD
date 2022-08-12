@@ -14,18 +14,8 @@ pipeline{
                             choice(
                                 choices: ['master', 'testing'], 
                                 name: 'Branch'
-                            ),
-                            booleanParam(
-                                defaultValue: true, 
-                                description: '', 
-                                name: 'CHECK_ON_SUCCESS'
-                            ),
-                            
-                            string(
-                                defaultValue: 'scriptcrunch', 
-                                name: 'STRING-PARAMETER', 
-                                trim: true
                             )
+                            
                         ])
                     ])
                 }
