@@ -48,9 +48,10 @@ pipeline{
          
          steps{
 		 
-		 def dockerrun = 'docker container run -d --name cloudcontainer -p 9090:80 nityarinky100/declarative-pipeline:latest'
+		 
 		sshagent(['dockerhubpass2']) {
     // some block
+			def dockerrun = 'docker container run -d --name cloudcontainer -p 9090:80 nityarinky100/declarative-pipeline:latest'
 			sh "ssh -o StrictHostKeyChecking=no root@172.31.95.120 ${dockerrun}"
 }
 
