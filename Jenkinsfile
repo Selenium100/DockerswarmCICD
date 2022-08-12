@@ -47,10 +47,10 @@ pipeline{
 		stage("Pull latest image from Dockerhub and deploy container"){
          
          steps{
-		 def dockerrun = 'docker container run -itd --name cloudcontainer -p 9090:80 nityarinky100/declarative-pipeline:latest'
+		 
 		sshagent(['dockerhubpass2']) {
     // some block
-			sh "ssh -o StrictHostKeyChecking=no root@172.31.95.120 ${dockerrun}"
+			sh "ssh -o StrictHostKeyChecking=no root@172.31.95.120 'docker container run -itd --name cloudcontainer -p 9090:80 nityarinky100/declarative-pipeline:latest'"
 }
 
 		 
