@@ -32,7 +32,6 @@ pipeline{
 		withCredentials([string(credentialsId: 'nityapass3', variable: 'nityapass3')]) { 
     // some block
 			 sh 'docker login -u nityarinky100 -p ${nityapass3}'
-			 sh 'docker image push nityarinky100/$JOB_NAME.v1.$BUILD_ID'
 			 sh 'docker image push nityarinky100/$JOB_NAME:latest'
 			 sh 'docker image rmi $JOB_NAME.v1.$BUILD_ID nityarinky100/$JOB_NAME.v1.$BUILD_ID nityarinky100/$JOB_NAME:latest'
 			 echo 'Docker image is pushed to dockerhub'
@@ -51,8 +50,8 @@ pipeline{
 		
 		sshagent(['dockerhubpass2']) {
     // some block
-			
-			sh 'docker container run -p 9090:80 -d --name cloudcontainer nityarinky100/declarative-pipeline:latest'
+			sh 'ssh -o StrictHostKeyChecking=no  root@172.31.95.120 'docker container run -p 9090:80 -d --name cloudcontainer nityarinky100/declarative-pipeline:latest''
+			 
 }
 
 		 
