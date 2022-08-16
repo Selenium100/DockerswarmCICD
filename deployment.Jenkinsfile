@@ -17,7 +17,7 @@ pipeline{
                         parameters([
                             string(
                                 name: 'Branch',
-				defaultValue: 'FETCH_HEAD' ,
+				defaultValue: 'master' ,
 				description: 'Git Branch to checkout')
 
 				
