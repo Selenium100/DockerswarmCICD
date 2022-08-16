@@ -16,7 +16,7 @@ pipeline{
                     properties([
                         parameters([
                             string(
-                                name: 'GIT BRANCH',
+                                name: 'Branch',
 				defaultValue: 'FETCH_HEAD' ,
 				description: 'Git Branch to checkout')
 
