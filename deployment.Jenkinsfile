@@ -15,10 +15,13 @@ pipeline{
                 script { 
                     properties([
                         parameters([
-                            choice(
-                                choices: ['master', 'testing'], 
-                                name: 'Branch'
-                            )
+                            string(
+                                name: 'GIT BRANCH',
+				defaultValue: 'FETCH_HEAD' ,
+				description: 'Git Branch to checkout')
+
+				
+                            
                             
                         ])
                     ])
