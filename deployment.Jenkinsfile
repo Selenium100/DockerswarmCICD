@@ -25,10 +25,9 @@ pipeline{
 				description: 'Git Branch to checkout')
 				
 				string(
-				 name: 'SLAVE_LABEL'
-				 defaultValue: 'SLAVE1'
-				 description: 'Specify the salve label'
-				)
+				 name: 'SLAVE_LABEL',
+				 defaultValue: 'SLAVE1',
+				 description: 'Specify the salve label')
 
 				
                             
