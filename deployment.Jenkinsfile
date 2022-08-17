@@ -22,7 +22,7 @@ pipeline{
                             string(
                                 name: 'Branch',
 				defaultValue: 'master' ,
-				description: 'Git Branch to checkout')
+				description: 'Git Branch to checkout'),
 				
 				string(
 				 name: 'SLAVE_LABEL',
