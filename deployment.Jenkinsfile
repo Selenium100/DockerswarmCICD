@@ -1,6 +1,10 @@
 pipeline{
 	
-	agent any
+	agent {
+	
+	label "${SLAVE1}"
+	
+	}
 	
 	options{
 	timestamps()
