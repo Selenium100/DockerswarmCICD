@@ -2,6 +2,10 @@ pipeline{
 	
 	agent any
 	
+	options{
+	timestamps()
+	}
+	
 	
 
 	stages{
@@ -11,10 +15,13 @@ pipeline{
                 script { 
                     properties([
                         parameters([
-                            choice(
-                                choices: ['master', 'testing'], 
-                                name: 'Branch'
-                            )
+                            string(
+                                name: 'Branch',
+				defaultValue: 'master' ,
+				description: 'Git Branch to checkout'),
+
+				
+                            
                             
                         ])
                     ])
@@ -34,7 +41,6 @@ pipeline{
 		stage("Build Docker image"){
          
          steps{
-
 		 sh 'docker image build -t $JOB_NAME.v1.$BUILD_ID .'
 		 sh 'docker image tag $JOB_NAME.v1.$BUILD_ID nityarinky100/$JOB_NAME.v1.$BUILD_ID'
 		 sh 'docker image tag $JOB_NAME.v1.$BUILD_ID nityarinky100/$JOB_NAME:latest'
@@ -48,7 +54,8 @@ pipeline{
          steps{
 		 
 		withCredentials([string(credentialsId: 'nityapass3', variable: 'nityapass3')]) { 
-    // some block
+    // some block        
+                    
 			 sh 'docker login -u nityarinky100 -p ${nityapass3}'
 			 sh 'docker image push nityarinky100/$JOB_NAME:latest'
 			 sh 'docker image rmi $JOB_NAME.v1.$BUILD_ID nityarinky100/$JOB_NAME.v1.$BUILD_ID nityarinky100/$JOB_NAME:latest'
@@ -68,6 +75,7 @@ pipeline{
 		
 		sshagent(['nityadockerhubpass']) {
     // some block       
+                         
 			sh "ssh -o StrictHostKeyChecking=no  ec2-user@172.31.95.120 'docker container rm -f cloudcontainer'"
 			sh "ssh -o StrictHostKeyChecking=no  ec2-user@172.31.95.120 'docker image rmi nityarinky100/declarative-pipeline:latest'"
 			sh "ssh -o StrictHostKeyChecking=no  ec2-user@172.31.95.120 'docker container run -p 9090:80 -d --name cloudcontainer nityarinky100/declarative-pipeline:latest'"
